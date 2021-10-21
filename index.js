@@ -62,6 +62,31 @@ app.get('/itd', async (req, res) => {
   }
 });
 
+app.get('/itn', async (req, res) => {
+  try {
+    const itnData = [];
+    const itnHTML = (await axios.get(BASE_URL)).data;
+    const $ = cheerio.load(itnHTML);
+
+    $('div.mp-itn ul:nth-child(3)', itnHTML).each(function () {
+      const content = $(this).children().text().split('.');
+      content
+        .filter(item => item)
+        .map(item => {
+          itnData.push({
+            info: item,
+          });
+        });
+    });
+    return res.status(StatusCodes.OK).json(itnData);
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send('<h5>Something went wrong. Please try again later.</h5>');
+  }
+});
+
 const start = () => {
   app.listen(PORT, () =>
     console.log(`Server is listening on port ${PORT}...🚀`)
