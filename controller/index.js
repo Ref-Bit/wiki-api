@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
 const { StatusCodes } = require('http-status-codes');
-const BASE_URL = 'https://ar.wikipedia.org';
+exports.BASE_URL = 'https://ar.wikipedia.org';
 
 /**
  * GET data from HTML
