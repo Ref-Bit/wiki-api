@@ -70,4 +70,22 @@ router.get('/recent-deaths', async (req, res) => {
   }
 });
 
+/**
+ * @method GET
+ * @access public
+ * @description API for featured article
+ */
+router.get('/featured-article', async (req, res) => {
+  try {
+    const html = (await axios.get(BASE_URL)).data;
+    const $ = cheerio.load(html);
+
+    const data = $('div.mp-tfa.mp-Sec > p').first().text();
+    return res.status(200).json({ content: data });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send('Something went wrong...');
+  }
+});
+
 module.exports = router;
