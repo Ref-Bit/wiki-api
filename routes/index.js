@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { apiHandler, BASE_URL } = require('../controller');
-const cheerio = require('cheerio');
-const axios = require('axios');
+const {
+  sectionsHandler,
+  recentDeathsHandler,
+  featuredArticleHandler,
+} = require('../controller');
 
 /**
  * @method GET
@@ -16,76 +18,49 @@ router.get('/', (req, res) => {
 
 /**
  * @method GET
- * @param {requestCallback} apiHandler
+ * @param {requestCallback} sectionsHandler
  * @access public
  * @description API for Did you know
  */
-router.get('/dyk', apiHandler);
+router.get(
+  '/dyk',
+  (req, res, next) => {
+    req.query.matcher = /\.../gm;
+    next();
+  },
+  sectionsHandler
+);
 
 /**
  * @method GET
- * @param {requestCallback} apiHandler
+ * @param {requestCallback} sectionsHandler
  * @access public
  * @description API for In this day
  */
-router.get('/itd', apiHandler);
+router.get('/itd', sectionsHandler);
 
 /**
  * @method GET
- * @param {requestCallback} apiHandler
+ * @param {requestCallback} sectionsHandler
  * @access public
  * @description API for In the news
  */
-router.get('/itn', apiHandler);
+router.get('/itn', sectionsHandler);
 
 /**
  * @method GET
+ * @param {requestCallback} recentDeathsHandler
  * @access public
  * @description API for recent deaths
  */
-router.get('/recent-deaths', async (req, res) => {
-  try {
-    const data = [];
-    const html = (await axios.get(BASE_URL)).data;
-    const $ = cheerio.load(html);
-
-    $('div.mp-itn.mp-Sec > ul:nth-child(5) > li:nth-child(2) a').each(function (
-      i
-    ) {
-      const title = $(this).text();
-      const link = $(this).attr('href');
-
-      // Skip the first iteration
-      if (i === 0) return;
-
-      data.push({
-        title,
-        link: BASE_URL + link,
-      });
-    });
-    return res.status(200).json(data);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send('Something went wrong...');
-  }
-});
+router.get('/recent-deaths', recentDeathsHandler);
 
 /**
  * @method GET
+ * @param {requestCallback} featuredArticleHandler
  * @access public
  * @description API for featured article
  */
-router.get('/featured-article', async (req, res) => {
-  try {
-    const html = (await axios.get(BASE_URL)).data;
-    const $ = cheerio.load(html);
-
-    const data = $('div.mp-tfa.mp-Sec > p').first().text();
-    return res.status(200).json({ content: data });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send('Something went wrong...');
-  }
-});
+router.get('/featured-article', featuredArticleHandler);
 
 module.exports = router;
