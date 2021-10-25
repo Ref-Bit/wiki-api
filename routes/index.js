@@ -53,7 +53,7 @@ router.get('/itn', sectionsHandler);
  * @access public
  * @description API for recent deaths
  */
-router.get('/recent-deaths', recentDeathsHandler);
+router.get('/rd', recentDeathsHandler);
 
 /**
  * @method GET
@@ -61,6 +61,6 @@ router.get('/recent-deaths', recentDeathsHandler);
  * @access public
  * @description API for featured article
  */
-router.get('/featured-article', featuredArticleHandler);
+router.get('/fa', featuredArticleHandler);
 
 module.exports = router;

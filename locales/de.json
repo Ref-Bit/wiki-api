@@ -1,0 +1,22 @@
+{
+  "dyk": {
+    "selector": "#wissenswertes > div > ul:nth-child(2)",
+    "splitter": "."
+  },
+  "itd": {
+    "selector": "#ereignisse > div > ul:nth-child(1)",
+    "splitter": "."
+  },
+  "itn": {
+    "selector": "#nachrichten > div > ul:nth-child(4)",
+    "splitter": "."
+  },
+  "rd": {
+    "selector": "#verstorbene > div > ul",
+    "splitter": ""
+  },
+  "fa": {
+    "selector": "#artikel > div > p",
+    "splitter": ""
+  }
+}

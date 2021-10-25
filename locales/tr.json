@@ -1,0 +1,22 @@
+{
+  "dyk": {
+    "selector": "#mp-bm > ul",
+    "splitter": "."
+  },
+  "itd": {
+    "selector": "#mp-itn > ul:nth-child(2)",
+    "splitter": "."
+  },
+  "itn": {
+    "selector": "",
+    "splitter": ""
+  },
+  "rd": {
+    "selector": "",
+    "splitter": ""
+  },
+  "fa": {
+    "selector": "#mp-tfa",
+    "splitter": ""
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "dyk": {
+    "selector": ".portail-gauche > div:nth-child(3) > ul",
+    "splitter": "."
+  },
+  "itd": {
+    "selector": ".portail-droite > div:nth-child(2) > ul",
+    "splitter": "."
+  },
+  "itn": {
+    "selector": ".portail-gauche div:nth-child(2) > ul",
+    "splitter": "."
+  },
+  "rd": {
+    "selector": ".portail-gauche > div:nth-child(2) > p:nth-child(7) a",
+    "splitter": ""
+  },
+  "fa": {
+    "selector": ".portail-gauche div p",
+    "splitter": ""
+  }
+}
