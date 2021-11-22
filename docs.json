@@ -1,0 +1,455 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Wikipedia API",
+    "description": "An extracted API from Wikipedia website built on web scraping technology. Please note that requests are limited to **5 calls per endpoint per minute** for each client.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support",
+      "url": "http://www.github.com/Ref-Bit",
+      "email": "refaatbitar@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1",
+      "description": "Development Server"
+    },
+    {
+      "url": "https://ref-bit-wikipedia-api.herokuapp.com/api/v1",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/dyk": {
+      "get": {
+        "tags": [
+          "Main"
+        ],
+        "summary": "Returns a array of strings.",
+        "description": "Data scraped from _Did You Know_ section.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "locale",
+            "schema": {
+              "type": "string",
+              "default": "ar",
+              "enum": [
+                "ar",
+                "en",
+                "fr",
+                "tr",
+                "de"
+              ]
+            },
+            "description": "The locale of Wikipedia website can be one of the options below.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "description": "The number of allowed requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Remaining": {
+                "description": "The number of remaining requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Reset": {
+                "description": "The number of seconds left in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Info"
+                },
+                "example": [
+                  {
+                    "info": "that the 1514 horned helmet of Henry VIII (pictured) has spectacles and a toothy grimace"
+                  }
+                ]
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Too many requests, please try again later."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/itd": {
+      "get": {
+        "tags": [
+          "Main"
+        ],
+        "summary": "Returns a array of strings.",
+        "description": "Data scraped from _In This Day_ section.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "locale",
+            "schema": {
+              "type": "string",
+              "default": "ar",
+              "enum": [
+                "ar",
+                "en",
+                "fr",
+                "tr",
+                "de"
+              ]
+            },
+            "description": "The locale of Wikipedia website can be one of the options below.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "description": "The number of allowed requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Remaining": {
+                "description": "The number of remaining requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Reset": {
+                "description": "The number of seconds left in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Info"
+                },
+                "example": [
+                  {
+                    "info": "1210 – Otto IV, Holy Roman Emperor, was ex\u00adcom\u00admu\u00adni\u00adcated by Pope Innocent III after Otto commanded him to annul the Concordat of Worms"
+                  }
+                ]
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Too many requests, please try again later."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/itn": {
+      "get": {
+        "tags": [
+          "Main"
+        ],
+        "summary": "Returns a array of strings.",
+        "description": "Data scraped from _In The News_ section.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "locale",
+            "schema": {
+              "type": "string",
+              "default": "ar",
+              "enum": [
+                "ar",
+                "en",
+                "fr",
+                "tr",
+                "de"
+              ]
+            },
+            "description": "The locale of Wikipedia website can be one of the options below.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "description": "The number of allowed requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Remaining": {
+                "description": "The number of remaining requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Reset": {
+                "description": "The number of seconds left in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Info"
+                },
+                "example": [
+                  {
+                    "info": "Kosmos 1408 is destroyed by a Russian anti-satellite weapon and producing space debris"
+                  }
+                ]
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Too many requests, please try again later."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rd": {
+      "get": {
+        "tags": [
+          "Main"
+        ],
+        "summary": "Returns a array of strings.",
+        "description": "Data scraped from _Recent Deaths_ section.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "locale",
+            "schema": {
+              "type": "string",
+              "default": "ar",
+              "enum": [
+                "ar",
+                "en",
+                "fr",
+                "tr",
+                "de"
+              ]
+            },
+            "description": "The locale of Wikipedia website can be one of the options below.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "description": "The number of allowed requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Remaining": {
+                "description": "The number of remaining requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Reset": {
+                "description": "The number of seconds left in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recent_Deaths"
+                },
+                "example": [
+                  {
+                    "title": "Art Stewart",
+                    "link": "https://en.wikipedia.org/wiki/Art_Stewart"
+                  },
+                  {
+                    "title": "Julio Lugo",
+                    "link": "https://en.wikipedia.org/wiki/Julio_Lugo"
+                  }
+                ]
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Too many requests, please try again later."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fa": {
+      "get": {
+        "tags": [
+          "Main"
+        ],
+        "summary": "Returns a array of strings.",
+        "description": "Data scraped from _Featured Article of The Day_ section.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "locale",
+            "schema": {
+              "type": "string",
+              "default": "ar",
+              "enum": [
+                "ar",
+                "en",
+                "fr",
+                "tr",
+                "de"
+              ]
+            },
+            "description": "The locale of Wikipedia website can be one of the options below.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "description": "The number of allowed requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Remaining": {
+                "description": "The number of remaining requests in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Reset": {
+                "description": "The number of seconds left in the current period",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Featured_Article"
+                },
+                "example": {
+                  "content": "Walt Whitman and Abraham Lincoln never met, but the American poet greatly admired Lincoln, the 16th president of the United States, and was deeply affected by his assassination, writing several poems as elegies and giving a series of lectures on Lincoln. Shortly after the assassination, Whitman hastily wrote the first of his Lincoln poems, \"Hush'd Be the Camps To-Day\". Two more appeared in his collection Sequel to Drum-Taps later in 1865: \"O Captain! My Captain!\" and \"When Lilacs Last in the Dooryard Bloom'd\". The poems—particularly \"My Captain!\"—were  popular upon publication and, in the following years, Whitman styled himself as an interpreter of Lincoln. In 1871, his fourth poem on Lincoln, \"This Dust Was Once the Man\", was published.  \"My Captain!\" is still one of Whitman's most popular works, despite slipping in popularity and critical assessment since the early 1900s. \"Lilacs\" is often listed as one of Whitman's finest works. (This article is part of a featured topic: Walt Whitman and Abraham Lincoln.)\n"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Too many requests, please try again later."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Info": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "info": {
+              "type": "string",
+              "description": "In the news info."
+            }
+          }
+        }
+      },
+      "Recent_Deaths": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "name of the deceased person."
+            },
+            "link": {
+              "type": "string",
+              "description": "link to the deceased person profile on Wikipedia."
+            }
+          }
+        }
+      },
+      "Featured_Article": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Featured article of the day content."
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Main",
+      "description": ""
+    }
+  ]
+}
